@@ -4,6 +4,7 @@ import {
   CatRepositoryProtocol
 } from "../../services/cats/CatLocalStorageProtocol";
 import { Cat } from "../../types/Cat";
+import { generateName } from "../../utils/generateName";
 
 export class CatRepository implements CatRepositoryProtocol {
   private api: CatAPIProtocol;
@@ -17,9 +18,12 @@ export class CatRepository implements CatRepositoryProtocol {
 
   async getList(page: number = 0): Promise<Cat[]> {
     const cats = await this.api.fetchCatList(this.itemsPerPage, page * this.itemsPerPage);
-    // Assume API directly returns Cat array for simplicity
-    // Modify cats if necessary before saving
-    this.localStorage.saveCats(cats);
+    let workingCats = cats.map(cat => {
+      let modifiableCat = cat;
+      modifiableCat.displayName = generateName(cat.id);
+      return modifiableCat;
+    });
+    this.localStorage.saveCats(workingCats);
     return cats;
   }
 
@@ -27,8 +31,9 @@ export class CatRepository implements CatRepositoryProtocol {
     let cat = this.localStorage.getCatById(id);
     if (!cat) {
       cat = await this.api.fetchCatDetail(id);
-      // Modify cat if necessary before saving
-      this.localStorage.saveCat(cat);
+      let modifiableCat = cat;
+      modifiableCat.displayName = generateName(cat.id);
+      this.localStorage.saveCat(modifiableCat);
     }
     return cat;
   }

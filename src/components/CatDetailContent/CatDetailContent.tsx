@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Image, Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Cat } from "../../types/Cat";
 import TagsView from "./TagsView";
+import DetailContent from "../../components/CatDetailContent/DetailContent";
 
 // Import your theming system or context if you have one
 
@@ -52,7 +53,7 @@ const CatDetailContent: React.FC<CatDetailContentProps> = ({
         />
         <Button title="Apply" onPress={handleApplyText} />
       </View>
-      {/* Render additional cat details similarly */}
+      <DetailContent cat={cat} />
     </View>
   );
 };
