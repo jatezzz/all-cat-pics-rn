@@ -7,8 +7,8 @@ import CatCard from "../../components/CatCard/CatCard";
 import { Cat } from "../../types/Cat";
 import ScreenTemplate from "../../screens/ScreenTemplate/ScreenTemplate.screen";
 import { useCatList } from "../../hooks/useCatList";
+import { t } from "./../../localization/localization";
 
-const errorMessage = "Ocurrió un problema, vuelve a intentarlo";
 const numColumns = 2;
 const horizontalSpacing = 10;
 const verticalSpacing = 10;
@@ -18,14 +18,18 @@ const itemWidth = (width - (numColumns + 1) * horizontalSpacing) / numColumns;
 const ListScreen: React.FC<Props> = () => {
   const { cats, isLoading, error, loadNextPage } = useCatList();
 
-
   const columnWidth = (Dimensions.get("window").width / 2) - 15; // Calculate based on your needs
 
-  if (error) return <Error message={errorMessage} />;
+  if (error) return <Error message={t("general.error")} />;
 
   const renderHeader = () => (
     <View style={styles.header}>
-      <Text style={styles.headerText}>My List Header</Text>
+      <Text
+        style={styles.headerText}
+        accessibilityHint={t("list.page.description")}
+      >
+        {t("list.pageDescription")}
+      </Text>
     </View>
   );
 
@@ -36,7 +40,7 @@ const ListScreen: React.FC<Props> = () => {
     <Link href={`/cat/${item.id}`} asChild>
       <TouchableOpacity
         accessibilityLabel={`List cat name ${item.displayName}`}
-        accessibilityHint="Double tap to view cat details"
+        accessibilityHint={t("list.cat.name.accessibilityHint")}
         accessibilityRole="button"
         style={{ width: columnWidth }}
       >
@@ -47,11 +51,6 @@ const ListScreen: React.FC<Props> = () => {
 
   return (
     <ScreenTemplate style={styles.container}>
-      <Text
-        accessibilityHint="list.page.description"
-      >
-        list.pageDescription
-      </Text>
       <FlatList
         data={cats}
         renderItem={renderCatCard}
@@ -81,22 +80,22 @@ const styles = StyleSheet.create({
     paddingTop: 10
   },
   listContent: {
-    paddingHorizontal: horizontalSpacing // Add padding to the sides of the list
+    paddingHorizontal: horizontalSpacing
   },
   item: {
-    backgroundColor: "lightgrey", // Example color
+    backgroundColor: "lightgrey",
     width: itemWidth,
-    height: 200, // Adjust your item height as needed
+    height: 200,
     justifyContent: "center",
     alignItems: "center",
     marginHorizontal: horizontalSpacing / 2
   },
   header: {
-    padding: 10
+    paddingTop: 20,
+    paddingBottom: 20
   },
   headerText: {
-    fontSize: 18,
-    fontWeight: "bold"
+    fontSize: 14
   }
 });
 

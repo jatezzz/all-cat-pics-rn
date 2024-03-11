@@ -25,7 +25,6 @@ module.exports = function (api) {
             assets: "./assets",
             config: "./config",
             containers: "./containers",
-            i18n: "./i18n",
             "@styles": "./src/styles",
             interfaces: "./interfaces",
             utils: "./utils"

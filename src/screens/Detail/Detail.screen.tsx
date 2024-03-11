@@ -1,13 +1,15 @@
 import styles from "./Detail.screen.styles";
 import { DetailProps as Props } from "./Detail.screen.types";
 import ScreenTemplate from "../ScreenTemplate/ScreenTemplate.screen";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import CatDetailContent from "../../components/CatDetailContent/CatDetailContent";
 import CatAPIEndpoints from "../../config/CatAPIEndpoints";
-import { useState } from "react";
+import React, { useState } from "react";
 import * as FileSystem from "expo-file-system";
 import * as MediaLibrary from "expo-media-library";
 import { useCatDetails } from "../../hooks/useCatDetails";
+import { t } from "../../localization/localization";
+import Error from "../../components/global/Error/Error";
 
 const DetailScreen: React.FC<Props> = ({ catId }) => {
   const { cat, isLoading, error } = useCatDetails(catId);
@@ -53,10 +55,18 @@ const DetailScreen: React.FC<Props> = ({ catId }) => {
 
   if (isLoading) return <Text>Loading...</Text>;
   if (!cat) return <Text>No cat found.</Text>;
+  if (error) return <Error message={t("general.error")} />;
 
   return (
     <ScreenTemplate scrollable style={styles.container}>
-      <Text>Now on Detail</Text>
+      <View style={styles.header}>
+        <Text
+          style={styles.headerText}
+          accessibilityHint={t("detail.page.description")}
+        >
+          {t("detail.page.description")}
+        </Text>
+      </View>
       <CatDetailContent cat={cat}
                         applyTextToImage={text => {
                           setImageURL(CatAPIEndpoints.catSaysImageURL(cat?.id ?? "", text));
