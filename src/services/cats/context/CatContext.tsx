@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode } from "react";
+import React, { createContext, ReactNode, useMemo } from "react";
 import { CatAPIService } from "../service/CatAPIService";
 import { CatLocalStorage } from "../service/CatLocalStorage";
 import { CatRepository } from "../repository/CatRepository";
@@ -7,20 +7,26 @@ export interface CatContextType {
   repository: CatRepository;
 }
 
-export const CatContext = createContext<CatContextType>({ repository: new CatRepository(new CatAPIService(), new CatLocalStorage()) });
+// Use a function to lazily initialize the repository
+// This avoids the instantiation cost if the context is never used
+const defaultContextValue = () => ({
+  repository: new CatRepository(new CatAPIService(), new CatLocalStorage())
+});
+
+export const CatContext = createContext<CatContextType>({ repository: defaultContextValue().repository });
 
 interface CatProviderProps {
   children: ReactNode;
 }
 
 export const CatProvider: React.FC<CatProviderProps> = ({ children }) => {
-  const apiService = new CatAPIService();
-  const localStorage = new CatLocalStorage();
-  const repository = new CatRepository(apiService, localStorage);
+  // useMemo will ensure the services and repository are only created once
+  const value = useMemo(() => {
+    const apiService = new CatAPIService();
+    const localStorage = new CatLocalStorage();
+    const repository = new CatRepository(apiService, localStorage);
+    return { repository };
+  }, []);
 
-  return (
-    <CatContext.Provider value={{ repository }}>
-      {children}
-    </CatContext.Provider>
-  );
+  return <CatContext.Provider value={value}>{children}</CatContext.Provider>;
 };
