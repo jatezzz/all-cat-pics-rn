@@ -46,7 +46,7 @@ export const useGetCats = () => {
     (async () => {
       await loadNextPage();
     })();
-  }, []);
+  }, [repository]);
 
   return { isLoading, cats, error, loadNextPage };
 };
