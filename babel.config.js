@@ -22,16 +22,13 @@ module.exports = function (api) {
           ],
           root: ["./src"],
           alias: {
-            assets: "./src/assets",
-            components: "./src/components",
-            config: "./src/config",
-            containers: "./src/containers",
-            i18n: "./src/i18n",
-            screens: "./src/screens",
-            services: "./src/services",
-            styles: "./src/styles",
-            interfaces: "./src/interfaces",
-            utils: "./src/utils"
+            assets: "./assets",
+            config: "./config",
+            containers: "./containers",
+            i18n: "./i18n",
+            "@styles": "./src/styles",
+            interfaces: "./interfaces",
+            utils: "./utils"
           }
         }
       ],

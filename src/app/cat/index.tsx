@@ -1,10 +1,8 @@
-import { Text, View } from "react-native";
+import DetailScreen from "screens/Detail/Detail.screen";
 
 export const Page = () => {
   return (
-    <View>
-      <Text>Hola</Text>
-    </View>
+    <DetailScreen />
   );
 };
 

@@ -55,6 +55,10 @@ function RootLayoutNav() {
         <Stack>
           <Stack.Screen name="index" options={{ header: () => <Header /> }} />
           <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+          <Stack.Screen
+            name="cat/index"
+            options={{ header: () => <Header showGoBack /> }}
+          />
         </Stack>
       </SafeAreaProvider>
     </ThemeProvider>
