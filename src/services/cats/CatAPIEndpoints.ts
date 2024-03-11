@@ -14,6 +14,8 @@ export default class CatAPIEndpoints {
   }
 
   static catSaysImageURL(id: string, text: string): string {
-    return `${this.base}/cat/${id}/says/${text}?fontSize=50&fontColor=white`;
+    const encodedText = encodeURIComponent(text);
+    return `${this.base}/cat/${id}/says/${encodedText}?fontSize=50&fontColor=white`;
   }
+
 }

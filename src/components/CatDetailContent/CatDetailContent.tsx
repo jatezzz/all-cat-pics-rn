@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Button, Image, Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Button, Keyboard, StyleSheet, TextInput, View } from "react-native";
 import { Cat } from "../../types/Cat";
 import TagsView from "./TagsView";
-import DetailContent from "../../components/CatDetailContent/DetailContent";
+import DetailContent from "./DetailContent";
+import DetailImageComponent from "./DetailImageComponent";
 
 // Import your theming system or context if you have one
 
@@ -35,13 +36,7 @@ const CatDetailContent: React.FC<CatDetailContentProps> = ({
 
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image source={{ uri: imageURL }} style={styles.catImage} />
-        <TouchableOpacity style={styles.saveButton} onPress={saveImageToGallery} disabled={isSaving}>
-          {/* Replace with your save icon */}
-          <Text>Save</Text>
-        </TouchableOpacity>
-      </View>
+      <DetailImageComponent imageURL={imageURL} onSaveImageToGallery={saveImageToGallery} isSaving={false} />
       <TagsView tags={cat.tags} />
       <View style={styles.textInputContainer}>
         <TextInput
