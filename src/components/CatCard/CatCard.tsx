@@ -1,9 +1,8 @@
 import React from "react";
-import { Dimensions, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { Image } from "expo-image";
 import { CatCardProps as Props } from "./CatCard.types";
 
-const screenWidth = Dimensions.get("window").width;
 
 const CatCard: React.FC<Props> = props => {
   // Assuming `cat` object has `id`, `displayName`, and other properties as needed
@@ -12,7 +11,7 @@ const CatCard: React.FC<Props> = props => {
   return (
     <View style={styles.card}>
       <Image
-        style={{ width: screenWidth, height: screenWidth, borderRadius: 10 }}
+        style={{ aspectRatio: 1, borderRadius: 10 }}
         source={{
           uri: imageUrl
         }}
@@ -27,8 +26,6 @@ const CatCard: React.FC<Props> = props => {
 
 const styles = StyleSheet.create({
   card: {
-    width: screenWidth,
-    height: screenWidth,
     borderRadius: 10,
     overflow: "hidden", // Ensures the image corner radius is clipped
     aspectRatio: 1

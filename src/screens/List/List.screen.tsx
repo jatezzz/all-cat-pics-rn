@@ -8,6 +8,11 @@ import CatCard from "../../components/CatCard/CatCard";
 import { Cat } from "../../types/Cat";
 
 const errorMessage = "Ocurrió un problema, vuelve a intentarlo";
+const numColumns = 2;
+const horizontalSpacing = 10;
+const verticalSpacing = 10;
+const { width } = Dimensions.get("window");
+const itemWidth = (width - (numColumns + 1) * horizontalSpacing) / numColumns;
 
 const ListScreen: React.FC<Props> = () => {
   const { isLoading, cats, error, loadNextPage } = useGetCats();
@@ -15,13 +20,20 @@ const ListScreen: React.FC<Props> = () => {
 
   if (error) return <Error message={errorMessage} />;
 
+  const renderHeader = () => (
+    <View style={styles.header}>
+      <Text style={styles.headerText}>My List Header</Text>
+    </View>
+  );
+
+  const ItemSeparator = () => <View style={{ height: verticalSpacing }} />;
 
   const renderCatCard = ({ item }: { item: Cat }) => (
 
     <Link href={`/cat/${item.id}`} asChild>
       <TouchableOpacity
-        accessibilityLabel={`List cat name ${item.displayName}`} // Modify as per your accessibilityLabel
-        accessibilityHint="Double tap to view cat details" // Modify as per your accessibilityHint
+        accessibilityLabel={`List cat name ${item.displayName}`}
+        accessibilityHint="Double tap to view cat details"
         accessibilityRole="button"
         style={{ width: columnWidth }}
       >
@@ -41,9 +53,12 @@ const ListScreen: React.FC<Props> = () => {
         data={cats}
         renderItem={renderCatCard}
         keyExtractor={item => item.id}
-        numColumns={2} // For grid layout
+        numColumns={numColumns}
+        ItemSeparatorComponent={ItemSeparator}
+        ListHeaderComponent={renderHeader}
+        contentContainerStyle={styles.listContent}
         indicatorStyle="black"
-        onEndReachedThreshold={0.5} // Fetch when half of the last item is visible
+        onEndReachedThreshold={0.5}
         onEndReached={({ distanceFromEnd }) => {
           if (!isLoading) {
             (async () => {
@@ -52,7 +67,6 @@ const ListScreen: React.FC<Props> = () => {
           }
         }}
         ListFooterComponent={isLoading ? <ActivityIndicator /> : null}
-        contentContainerStyle={styles.listContent}
       />
     </View>
   );
@@ -64,9 +78,23 @@ const styles = StyleSheet.create({
     paddingTop: 10
   },
   listContent: {
-    paddingHorizontal: 10
+    paddingHorizontal: horizontalSpacing // Add padding to the sides of the list
+  },
+  item: {
+    backgroundColor: "lightgrey", // Example color
+    width: itemWidth,
+    height: 200, // Adjust your item height as needed
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: horizontalSpacing / 2
+  },
+  header: {
+    padding: 10
+  },
+  headerText: {
+    fontSize: 18,
+    fontWeight: "bold"
   }
-  // Add more styles as needed
 });
 
 export default ListScreen;
