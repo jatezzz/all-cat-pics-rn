@@ -10,10 +10,8 @@ import CatCard from "../../components/CatCard/CatCard";
 const errorMessage = "Ocurrió un problema, vuelve a intentarlo";
 
 const ListScreen: React.FC<Props> = () => {
-  const { isLoading, cats, error } = useGetCats();
+  const { isLoading, cats, error, loadNextPage } = useGetCats();
 
-
-  if (isLoading) return <Loading />;
   if (error) return <Error message={errorMessage} />;
 
   return (
@@ -31,6 +29,15 @@ const ListScreen: React.FC<Props> = () => {
         }
         keyExtractor={item => item.id}
         indicatorStyle="black"
+        onEndReachedThreshold={0.5} // Fetch when half of the last item is visible
+        onEndReached={({ distanceFromEnd }) => {
+          if (!isLoading) {
+            (async () => {
+              await loadNextPage();
+            })();
+          }
+        }}
+        ListFooterComponent={<Loading />}
       />
     </>
   );
