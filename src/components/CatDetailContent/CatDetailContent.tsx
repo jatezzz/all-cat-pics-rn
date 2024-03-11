@@ -49,7 +49,6 @@ const CatDetailContent: React.FC<CatDetailContentProps> = ({
           value={userInputText}
           onChangeText={(text) => setUserInputText(text.slice(0, characterLimit))}
           placeholder="Add text to image"
-          // Additional TextInput configurations
         />
         <Button title="Apply" onPress={handleApplyText} />
       </View>
