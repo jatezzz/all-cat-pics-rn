@@ -56,7 +56,7 @@ function RootLayoutNav() {
           <Stack.Screen name="index" options={{ header: () => <Header /> }} />
           <Stack.Screen name="modal" options={{ presentation: "modal" }} />
           <Stack.Screen
-            name="cat/index"
+            name="cat/[id]"
             options={{ header: () => <Header showGoBack /> }}
           />
         </Stack>

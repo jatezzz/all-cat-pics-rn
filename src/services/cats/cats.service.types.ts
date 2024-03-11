@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getExternalCats } from "../cats/cats.service";
+import { Cat } from "../../types/Cat";
 
 export const useGetCats = () => {
   const [isLoading, setIsLoading] = useState(false);

@@ -23,7 +23,7 @@ const ListScreen: React.FC<Props> = () => {
       <FlatList
         data={cats}
         renderItem={({ item }) =>
-          <Link href={`/cat/`} asChild>
+          <Link href={`/cat/${item.id}`} asChild>
             <TouchableOpacity>
               <CatCard cat={item} />
             </TouchableOpacity>
