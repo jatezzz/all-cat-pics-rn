@@ -4,7 +4,7 @@ import ScreenTemplate from "../ScreenTemplate/ScreenTemplate.screen";
 import { Text } from "react-native";
 import CatDetailContent from "../../components/CatDetailContent/CatDetailContent";
 import CatAPIEndpoints from "../../config/CatAPIEndpoints";
-import { useCats } from "../../hooks/CatContext";
+import { useCats } from "../../services/cats/context/cats.services.hooks";
 import { useEffect, useState } from "react";
 import { Cat } from "../../types/Cat";
 import * as FileSystem from "expo-file-system";

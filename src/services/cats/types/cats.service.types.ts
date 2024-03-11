@@ -1,4 +1,4 @@
-import { Cat } from "../../types/Cat";
+import { Cat } from "@/src/types/Cat";
 
 export interface CatLocalStorageProtocol {
   saveCats(cats: Cat[]): void;

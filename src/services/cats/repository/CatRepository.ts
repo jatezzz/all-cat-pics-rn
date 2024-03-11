@@ -1,10 +1,6 @@
-import {
-  CatAPIProtocol,
-  CatLocalStorageProtocol,
-  CatRepositoryProtocol
-} from "../../services/cats/CatLocalStorageProtocol";
-import { Cat } from "../../types/Cat";
-import { generateName } from "../../utils/generateName";
+import { CatAPIProtocol, CatLocalStorageProtocol, CatRepositoryProtocol } from "../types/cats.service.types";
+import { Cat } from "../../../types/Cat";
+import { generateName } from "../../../utils/generateName";
 
 export class CatRepository implements CatRepositoryProtocol {
   private api: CatAPIProtocol;

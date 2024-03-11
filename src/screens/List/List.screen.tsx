@@ -5,7 +5,7 @@ import { Link } from "expo-router";
 import Error from "../../components/global/Error/Error";
 import CatCard from "../../components/CatCard/CatCard";
 import { Cat } from "../../types/Cat";
-import { useCats } from "../../hooks/CatContext";
+import { useCats } from "../../services/cats/context/cats.services.hooks";
 import ScreenTemplate from "../../screens/ScreenTemplate/ScreenTemplate.screen";
 
 const errorMessage = "Ocurrió un problema, vuelve a intentarlo";

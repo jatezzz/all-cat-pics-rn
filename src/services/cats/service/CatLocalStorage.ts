@@ -1,5 +1,5 @@
-import { Cat } from "../../types/Cat";
-import { CatLocalStorageProtocol } from "./CatLocalStorageProtocol";
+import { Cat } from "../../../types/Cat";
+import { CatLocalStorageProtocol } from "../types/cats.service.types";
 
 export class CatLocalStorage implements CatLocalStorageProtocol {
   private allCats: Set<Cat> = new Set();
