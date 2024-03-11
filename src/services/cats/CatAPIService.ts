@@ -1,6 +1,5 @@
 import { Cat } from "../../types/Cat";
 import CatAPIEndpoints from "../../config/CatAPIEndpoints";
-import { fromJsonArrayToCat, fromJsonToCat } from "../../services/cats/cats.service";
 import { CatAPIProtocol } from "../../services/cats/CatLocalStorageProtocol";
 
 export class CatAPIService implements CatAPIProtocol {
@@ -14,16 +13,24 @@ export class CatAPIService implements CatAPIProtocol {
     }
   }
 
-
   async fetchCatDetail(id: string): Promise<Cat> {
     try {
       const response = await fetch(CatAPIEndpoints.catDetail(id));
       if (!response.ok) throw new Error(response.statusText);
-      const data: Cat = fromJsonToCat(await response.json());
-      return data;
+      return fromJsonToCat(await response.json());
     } catch (error) {
       throw error;
     }
   }
 }
 
+function fromJsonToCat(json: any): Cat {
+  return new Cat({
+    ...json,
+    id: json._id
+  });
+}
+
+function fromJsonArrayToCat(json: any[]): Cat[] {
+  return json.map(individual => fromJsonToCat(individual));
+}

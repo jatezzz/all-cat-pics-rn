@@ -5,7 +5,7 @@ import { TouchableOpacity } from "react-native";
 import styles from "./GoBack.styles";
 import { GoBackProps as Props } from "./GoBack.types";
 
-import ChevronSVG from "assets/icons/chevron-left.svg";
+import ChevronSVG from "../../assets/icons/chevron-left.svg";
 
 const GoBack: React.FC<Props> = props => {
   const { style } = props;
