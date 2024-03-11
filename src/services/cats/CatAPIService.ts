@@ -1,5 +1,5 @@
 import { Cat } from "../../types/Cat";
-import CatAPIEndpoints from "../../services/cats/CatAPIEndpoints";
+import CatAPIEndpoints from "../../config/CatAPIEndpoints";
 import { fromJsonArrayToCat, fromJsonToCat } from "../../services/cats/cats.service";
 import { CatAPIProtocol } from "../../services/cats/CatLocalStorageProtocol";
 

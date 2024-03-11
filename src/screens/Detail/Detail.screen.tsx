@@ -3,7 +3,7 @@ import { DetailProps as Props } from "./Detail.screen.types";
 import ScreenTemplate from "../ScreenTemplate/ScreenTemplate.screen";
 import { Text } from "react-native";
 import CatDetailContent from "../../components/CatDetailContent/CatDetailContent";
-import CatAPIEndpoints from "../../services/cats/CatAPIEndpoints";
+import CatAPIEndpoints from "../../config/CatAPIEndpoints";
 import { useCats } from "../../hooks/CatContext";
 import { useEffect, useState } from "react";
 import { Cat } from "../../types/Cat";
