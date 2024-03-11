@@ -5,8 +5,6 @@ import TagsView from "./TagsView";
 import DetailContent from "./DetailContent";
 import DetailImageComponent from "./DetailImageComponent";
 
-// Import your theming system or context if you have one
-
 interface CatDetailContentProps {
   cat: Cat;
   imageURL: string;
@@ -57,28 +55,24 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10
   },
   imageContainer: {
-    // Styles for the image container
+
   },
   catImage: {
     width: "100%",
-    height: 400, // Adjust as needed
+    height: 400,
     borderRadius: 4
   },
   saveButton: {
     position: "absolute",
     right: 10,
     bottom: 20
-    // Additional styles for the button
   },
   textInputContainer: {
     flexDirection: "row"
-    // Styles for the text input container
   },
   textInput: {
     flex: 1
-    // Styles for the text input
   }
-  // Define additional styles as needed
 });
 
 export default CatDetailContent;

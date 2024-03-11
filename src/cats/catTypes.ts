@@ -1,6 +1,6 @@
-import { Cat } from "@/src/types/Cat";
+import { Cat } from "../types/Cat";
 
-export interface CatLocalStorageProtocol {
+export interface ICatLocalStorage {
   saveCats(cats: Cat[]): void;
 
   saveCat(cat: Cat): void;
@@ -8,13 +8,13 @@ export interface CatLocalStorageProtocol {
   getCatById(id: string): Cat | undefined;
 }
 
-export interface CatAPIProtocol {
+export interface ICatAPI {
   fetchCatList(limit: number, skip: number): Promise<Cat[]>;
 
   fetchCatDetail(id: string): Promise<Cat>;
 }
 
-export interface CatRepositoryProtocol {
+export interface ICatRepository {
   getList(page: number): Promise<Cat[]>;
 
   getDetail(id: string): Promise<Cat>;

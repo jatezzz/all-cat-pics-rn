@@ -3,7 +3,6 @@ import { StyleSheet, Text, View } from "react-native";
 import { Image } from "expo-image";
 import { CatCardProps as Props } from "./CatCard.types";
 
-
 const CatCard: React.FC<Props> = props => {
   // Assuming `cat` object has `id`, `displayName`, and other properties as needed
   const imageUrl = `https://cataas.com/cat/${props.cat.id}`;

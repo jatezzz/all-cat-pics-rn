@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#007AFF", // Replace with your theme accent color
+    backgroundColor: "#007AFF",
     borderRadius: 25
   },
   downloadButtonDisabled: {

@@ -1,7 +1,7 @@
-import { Cat } from "../../../types/Cat";
-import { CatLocalStorageProtocol } from "../types/cats.service.types";
+import { Cat } from "../../types/Cat";
+import { ICatLocalStorage } from "../catTypes";
 
-export class CatLocalStorage implements CatLocalStorageProtocol {
+export class CatLocalStorage implements ICatLocalStorage {
   private allCats: Set<Cat> = new Set();
 
   saveCats(cats: Cat[]): void {

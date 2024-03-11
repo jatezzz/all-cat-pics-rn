@@ -6,7 +6,6 @@ export interface TagsViewProps {
 }
 
 const TagsView: React.FC<TagsViewProps> = ({ tags }) => {
-  // Define colors in RGB format to use in React Native
   const colors = ["#FF0000", "#008000", "#0000FF", "#FFA500", "#FFC0CB", "#800080", "#FFFF00"];
 
   return (
@@ -24,21 +23,21 @@ const TagsView: React.FC<TagsViewProps> = ({ tags }) => {
 
 const styles = StyleSheet.create({
   scrollView: {
-    flexGrow: 0 // Prevent ScrollView from filling all available space
+    flexGrow: 0
   },
   container: {
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 8 // Add some vertical padding to the container
+    paddingVertical: 8
   },
   tag: {
     paddingHorizontal: 14,
     paddingVertical: 8,
-    borderRadius: 15, // Approximates a capsule shape
-    marginRight: 10 // Space between tags
+    borderRadius: 15,
+    marginRight: 10
   },
   text: {
-    color: "white" // Inverted text color for better contrast
+    color: "white"
   }
 });
 

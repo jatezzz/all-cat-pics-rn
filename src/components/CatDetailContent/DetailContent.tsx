@@ -3,8 +3,6 @@ import { StyleSheet, Text, View } from "react-native";
 import { Cat } from "../../types/Cat";
 import { formatDateString } from "../../utils/formatDateString";
 
-// Assume a `theme` and a function `formatDateString(date: Date): string` are defined elsewhere
-
 interface DetailContentProps {
   cat: Cat;
 }
@@ -47,7 +45,7 @@ const DetailContent: React.FC<DetailContentProps> = ({ cat }) => {
 
 const styles = StyleSheet.create({
   detailContent: {
-    alignItems: "flex-start" // Align items to the start, equivalent to SwiftUI's .leading
+    alignItems: "flex-start"
   }
 });
 

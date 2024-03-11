@@ -1,13 +1,13 @@
-import { CatAPIProtocol, CatLocalStorageProtocol, CatRepositoryProtocol } from "../types/cats.service.types";
-import { Cat } from "../../../types/Cat";
-import { generateName } from "../../../utils/generateName";
+import { ICatAPI, ICatLocalStorage, ICatRepository } from "../catTypes";
+import { Cat } from "../../types/Cat";
+import { generateName } from "../../utils/generateName";
 
-export class CatRepository implements CatRepositoryProtocol {
-  private api: CatAPIProtocol;
-  private localStorage: CatLocalStorageProtocol;
+export class CatRepository implements ICatRepository {
+  private api: ICatAPI;
+  private localStorage: ICatLocalStorage;
   private itemsPerPage = 10;
 
-  constructor(api: CatAPIProtocol, localStorage: CatLocalStorageProtocol) {
+  constructor(api: ICatAPI, localStorage: ICatLocalStorage) {
     this.api = api;
     this.localStorage = localStorage;
   }

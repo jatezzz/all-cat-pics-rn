@@ -1,7 +1,7 @@
 import React, { createContext, ReactNode, useMemo } from "react";
-import { CatAPIService } from "../service/CatAPIService";
-import { CatLocalStorage } from "../service/CatLocalStorage";
-import { CatRepository } from "../repository/CatRepository";
+import { CatAPIService } from "@/src/cats/service/CatAPIService";
+import { CatLocalStorage } from "@/src/cats/service/CatLocalStorage";
+import { CatRepository } from "@/src/cats/repository/CatRepository";
 
 export interface CatContextType {
   repository: CatRepository;
