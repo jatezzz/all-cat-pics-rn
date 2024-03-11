@@ -1,10 +1,9 @@
 // Interfaces and types from component ProductDetail
 
 // Component Props
-import { Cat } from "../../types/Cat";
 
 export interface DetailProps {
-  cat: Cat;
+  catId: string;
 }
 
 export interface ProductDetailParams {

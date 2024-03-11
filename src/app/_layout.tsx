@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useColorScheme } from "../components/useColorScheme";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import Header from "../components/Header/Header";
+import { CatProvider } from "../hooks/CatContext";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -51,16 +52,18 @@ function RootLayoutNav() {
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <SafeAreaProvider>
-        <Stack>
-          <Stack.Screen name="index" options={{ header: () => <Header /> }} />
-          <Stack.Screen name="modal" options={{ presentation: "modal" }} />
-          <Stack.Screen
-            name="cat/[id]"
-            options={{ header: () => <Header showGoBack /> }}
-          />
-        </Stack>
-      </SafeAreaProvider>
+      <CatProvider>
+        <SafeAreaProvider>
+          <Stack>
+            <Stack.Screen name="index" options={{ header: () => <Header /> }} />
+            <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+            <Stack.Screen
+              name="cat/[id]"
+              options={{ header: () => <Header showGoBack /> }}
+            />
+          </Stack>
+        </SafeAreaProvider>
+      </CatProvider>
     </ThemeProvider>
   );
 }
