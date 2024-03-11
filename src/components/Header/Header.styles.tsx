@@ -9,13 +9,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
-  logo: {
+  header: {
     height: 74,
     justifyContent: "center",
     alignItems: "center",
     borderBottomColor: Colors.light.gray,
     borderBottomWidth: 1,
     width: "100%"
+  },
+  headerText: {
+    fontSize: 14,
+    fontWeight: "bold"
   }
 });
 

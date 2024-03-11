@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Button, Keyboard, StyleSheet, TextInput, View } from "react-native";
+import { Button, Keyboard, StyleSheet, Text, TextInput, View } from "react-native";
 import { Cat } from "../../types/Cat";
 import TagsView from "./TagsView";
 import DetailContent from "./DetailContent";
 import DetailImageComponent from "./DetailImageComponent";
+import { t } from "../../localization/localization";
 
 interface CatDetailContentProps {
   cat: Cat;
@@ -35,7 +36,13 @@ const CatDetailContent: React.FC<CatDetailContentProps> = ({
   return (
     <View style={styles.container}>
       <DetailImageComponent imageURL={imageURL} onSaveImageToGallery={saveImageToGallery} isSaving={isSaving} />
+      <Text accessibilityLabel={t("detail.tags")}>
+        {t("detail.tags")}
+      </Text>
       <TagsView tags={cat.tags} />
+      <Text accessibilityLabel={t("detail.makeItYours")}>
+        {t("detail.makeItYours")}
+      </Text>
       <View style={styles.textInputContainer}>
         <TextInput
           style={styles.textInput}
