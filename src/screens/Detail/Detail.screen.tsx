@@ -14,6 +14,7 @@ const DetailScreen: React.FC<Props> = ({ catId }) => {
   const { repository } = useCats();
 
   const [cat, setCat] = useState<Cat | null>(null);
+  const [imageURL, setImageURL] = useState<string>(CatAPIEndpoints.catImageURL(catId));
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -50,7 +51,7 @@ const DetailScreen: React.FC<Props> = ({ catId }) => {
   };
 
 
-  const downloadAndSaveImage = async (imageUrl: string, mimeType: string) => {
+  const downloadAndSaveImage = async (mimeType: string) => {
     const hasPermission = await requestPermission();
     if (!hasPermission) return;
 
@@ -60,7 +61,7 @@ const DetailScreen: React.FC<Props> = ({ catId }) => {
       // Adjust the file URI to include the correct file extension
       const fileUri = FileSystem.documentDirectory + `temporaryfile${fileExtension}`;
 
-      const { uri } = await FileSystem.downloadAsync(imageUrl, fileUri);
+      const { uri } = await FileSystem.downloadAsync(imageURL, fileUri);
 
       // Now uri has the correct file extension, proceed to save
       const asset = await MediaLibrary.createAssetAsync(uri);
@@ -79,10 +80,11 @@ const DetailScreen: React.FC<Props> = ({ catId }) => {
     <ScreenTemplate scrollable style={styles.container}>
       <Text>Now on Detail</Text>
       <CatDetailContent cat={cat} applyTextToImage={text => {
-      }} imageURL={CatAPIEndpoints.catImageURL(cat.id)} isSaving={false} onSuccess={() => {
+        setImageURL(CatAPIEndpoints.catSaysImageURL(cat.id, text));
+      }} imageURL={imageURL} isSaving={false} onSuccess={() => {
       }} saveImageToGallery={() => {
         (async () => {
-          await downloadAndSaveImage(CatAPIEndpoints.catImageURL(cat.id), cat?.mimetype ?? "");
+          await downloadAndSaveImage(cat?.mimetype ?? "");
         })();
 
       }} />
