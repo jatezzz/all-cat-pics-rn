@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { getExternalCats } from "services/cats/cats.service";
+import { getExternalCats } from "../cats/cats.service";
 
 export const useGetCats = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [cats, setCats] = useState<string[]>([]);
+  const [cats, setCats] = useState<Cat[]>([]);
   const [error, setError] = useState(null);
 
   const fetchProducts = async () => {
@@ -11,6 +11,7 @@ export const useGetCats = () => {
       const cats = await getExternalCats();
       setCats(cats);
     } catch (err) {
+      console.log("err", err);
       // @ts-ignore
       setError(err);
     }
