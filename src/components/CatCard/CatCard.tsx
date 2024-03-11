@@ -15,7 +15,7 @@ const CatCard: React.FC<Props> = props => {
         source={{
           uri: imageUrl
         }}
-        resizeMode={"cover"}
+        contentFit={"fill"}
       />
       <View style={styles.overlay}>
         <Text style={styles.text}>{props.cat.displayName}</Text>

@@ -24,7 +24,7 @@ const DetailImageComponent: React.FC<DetailImageComponentProps> = ({
         style={styles.image}
         onLoad={onSuccess}
         onError={onFailure}
-        resizeMode="cover"
+        contentFit={"cover"}
         accessible={true}
         accessibilityLabel="Image view"
       />

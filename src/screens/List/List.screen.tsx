@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ListScreenProps as Props } from "./List.screen.types";
 import { ActivityIndicator, Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Link } from "expo-router";
-import { useGetCats } from "../../services/cats/cats.service.types";
 import Error from "../../components/global/Error/Error";
 import CatCard from "../../components/CatCard/CatCard";
 import { Cat } from "../../types/Cat";
+import { useCats } from "../../hooks/CatContext";
 
 const errorMessage = "Ocurrió un problema, vuelve a intentarlo";
 const numColumns = 2;
@@ -15,7 +15,36 @@ const { width } = Dimensions.get("window");
 const itemWidth = (width - (numColumns + 1) * horizontalSpacing) / numColumns;
 
 const ListScreen: React.FC<Props> = () => {
-  const { isLoading, cats, error, loadNextPage } = useGetCats();
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState<number>(0);
+  const [cats, setCats] = useState<Cat[]>([]);
+  const [error, setError] = useState(null);
+
+  const { repository } = useCats();
+  const fetchCats = async () => {
+    try {
+      const newCats = await repository?.getList(currentPage) ?? [];
+      setCats((prevCats) => [...prevCats, ...newCats]);
+    } catch (err) {
+      console.log("err", err);
+      // @ts-ignore
+      setError(err);
+    }
+  };
+  const loadNextPage = async () => {
+    setIsLoading(true);
+    await fetchCats();
+    setCurrentPage((prevPage) => prevPage + 1);
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    (async () => {
+      await loadNextPage();
+    })();
+  }, [repository]);
+
   const columnWidth = (Dimensions.get("window").width / 2) - 15; // Calculate based on your needs
 
   if (error) return <Error message={errorMessage} />;
