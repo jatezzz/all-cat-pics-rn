@@ -6,6 +6,7 @@ import Error from "../../components/global/Error/Error";
 import CatCard from "../../components/CatCard/CatCard";
 import { Cat } from "../../types/Cat";
 import { useCats } from "../../hooks/CatContext";
+import ScreenTemplate from "../../screens/ScreenTemplate/ScreenTemplate.screen";
 
 const errorMessage = "Ocurrió un problema, vuelve a intentarlo";
 const numColumns = 2;
@@ -72,7 +73,7 @@ const ListScreen: React.FC<Props> = () => {
   );
 
   return (
-    <View style={styles.container}>
+    <ScreenTemplate style={styles.container}>
       <Text
         accessibilityHint="list.page.description"
       >
@@ -97,7 +98,7 @@ const ListScreen: React.FC<Props> = () => {
         }}
         ListFooterComponent={isLoading ? <ActivityIndicator /> : null}
       />
-    </View>
+    </ScreenTemplate>
   );
 };
 

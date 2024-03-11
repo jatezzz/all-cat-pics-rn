@@ -6,7 +6,6 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 
 import { useColorScheme } from "../components/useColorScheme";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 import Header from "../components/Header/Header";
 import { CatProvider } from "../hooks/CatContext";
 
@@ -53,7 +52,6 @@ function RootLayoutNav() {
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <CatProvider>
-        <SafeAreaProvider>
           <Stack>
             <Stack.Screen name="index" options={{ header: () => <Header /> }} />
             <Stack.Screen
@@ -61,7 +59,6 @@ function RootLayoutNav() {
               options={{ header: () => <Header showGoBack /> }}
             />
           </Stack>
-        </SafeAreaProvider>
       </CatProvider>
     </ThemeProvider>
   );

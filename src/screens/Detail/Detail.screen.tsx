@@ -58,14 +58,8 @@ const DetailScreen: React.FC<Props> = ({ catId }) => {
     const fileExtension = getFileExtension(mimeType);
 
     try {
-      // Adjust the file URI to include the correct file extension
       const fileUri = FileSystem.documentDirectory + `temporaryfile${fileExtension}`;
-      console.log(imageURL);
-      console.log(fileUri);
       const { uri } = await FileSystem.downloadAsync(imageURL, fileUri);
-
-      console.log(uri);
-      // Now uri has the correct file extension, proceed to save
       const asset = await MediaLibrary.createAssetAsync(uri);
       await MediaLibrary.createAlbumAsync("AllCatPics", asset, false);
       alert("Image saved to gallery!");

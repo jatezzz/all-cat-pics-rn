@@ -54,7 +54,7 @@ const CatDetailContent: React.FC<CatDetailContentProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    // Styles for the container
+    paddingHorizontal: 10
   },
   imageContainer: {
     // Styles for the image container
