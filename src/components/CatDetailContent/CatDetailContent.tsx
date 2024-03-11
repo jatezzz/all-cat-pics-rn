@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Image, Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Cat } from "../../types/Cat";
+import TagsView from "./TagsView";
 
 // Import your theming system or context if you have one
 
@@ -40,7 +41,7 @@ const CatDetailContent: React.FC<CatDetailContentProps> = ({
           <Text>Save</Text>
         </TouchableOpacity>
       </View>
-      {/* Tags View and Detail Content Similar to Below */}
+      <TagsView tags={cat.tags} />
       <View style={styles.textInputContainer}>
         <TextInput
           style={styles.textInput}
