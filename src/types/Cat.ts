@@ -17,7 +17,7 @@ export class Cat implements ICat {
   id: string;
   editedAt?: string;
 
-  displayName: string = "";
+  displayName: string = "no-name";
 
   constructor(data: ICat) {
     this.tags = data.tags;
