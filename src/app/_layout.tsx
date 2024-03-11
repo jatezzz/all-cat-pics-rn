@@ -7,7 +7,7 @@ import { useEffect } from "react";
 
 import { useColorScheme } from "../components/useColorScheme";
 import Header from "../components/Header/Header";
-import { CatProvider } from "@/src/cats/context/CatContext";
+import { CatProvider } from "../cats/context/CatContext";
 
 export {
   // Catch any errors thrown by the Layout component.

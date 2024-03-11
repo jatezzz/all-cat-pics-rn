@@ -4,34 +4,16 @@ import ScreenTemplate from "../ScreenTemplate/ScreenTemplate.screen";
 import { Text } from "react-native";
 import CatDetailContent from "../../components/CatDetailContent/CatDetailContent";
 import CatAPIEndpoints from "../../config/CatAPIEndpoints";
-import { useCats } from "@/src/cats/context/useCats";
-import { useEffect, useState } from "react";
-import { Cat } from "../../types/Cat";
+import { useState } from "react";
 import * as FileSystem from "expo-file-system";
 import * as MediaLibrary from "expo-media-library";
+import { useCatDetails } from "../../hooks/useCatDetails";
 
 const DetailScreen: React.FC<Props> = ({ catId }) => {
-  const { repository } = useCats();
+  const { cat, isLoading, error } = useCatDetails(catId);
 
-  const [cat, setCat] = useState<Cat | null>(null);
   const [imageURL, setImageURL] = useState<string>(CatAPIEndpoints.catImageURL(catId));
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchCatDetail = async () => {
-      setIsLoading(true);
-      try {
-        const fetchedCat = await repository.getDetail(catId);
-        setCat(fetchedCat);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchCatDetail();
-  }, [catId, repository]);
+  const [isSaving, setIsSaving] = useState<boolean>(false);
 
   const requestPermission = async () => {
     const { status } = await MediaLibrary.requestPermissionsAsync();
@@ -75,15 +57,22 @@ const DetailScreen: React.FC<Props> = ({ catId }) => {
   return (
     <ScreenTemplate scrollable style={styles.container}>
       <Text>Now on Detail</Text>
-      <CatDetailContent cat={cat} applyTextToImage={text => {
-        setImageURL(CatAPIEndpoints.catSaysImageURL(cat.id, text));
-      }} imageURL={imageURL} isSaving={false} onSuccess={() => {
-      }} saveImageToGallery={() => {
-        (async () => {
-          await downloadAndSaveImage(cat?.mimetype ?? "");
-        })();
+      <CatDetailContent cat={cat}
+                        applyTextToImage={text => {
+                          setImageURL(CatAPIEndpoints.catSaysImageURL(cat?.id ?? "", text));
+                        }}
+                        imageURL={imageURL}
+                        isSaving={isSaving}
+                        onSuccess={() => {
+                        }}
+                        saveImageToGallery={() => {
+                          (async () => {
+                            setIsSaving(true);
+                            await downloadAndSaveImage(cat?.mimetype ?? "");
+                            setIsSaving(false);
+                          })();
 
-      }} />
+                        }} />
     </ScreenTemplate>
   );
 };

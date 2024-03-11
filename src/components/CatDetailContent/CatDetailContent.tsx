@@ -34,7 +34,7 @@ const CatDetailContent: React.FC<CatDetailContentProps> = ({
 
   return (
     <View style={styles.container}>
-      <DetailImageComponent imageURL={imageURL} onSaveImageToGallery={saveImageToGallery} isSaving={false} />
+      <DetailImageComponent imageURL={imageURL} onSaveImageToGallery={saveImageToGallery} isSaving={isSaving} />
       <TagsView tags={cat.tags} />
       <View style={styles.textInputContainer}>
         <TextInput
@@ -43,7 +43,7 @@ const CatDetailContent: React.FC<CatDetailContentProps> = ({
           onChangeText={(text) => setUserInputText(text.slice(0, characterLimit))}
           placeholder="Add text to image"
         />
-        <Button title="Apply" onPress={handleApplyText} />
+        <Button title="Apply" onPress={handleApplyText} disabled={isSaving} />
       </View>
       <DetailContent cat={cat} />
     </View>
