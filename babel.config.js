@@ -22,12 +22,9 @@ module.exports = function (api) {
           ],
           root: ["./src"],
           alias: {
-            assets: "./assets",
-            config: "./config",
-            containers: "./containers",
-            "@styles": "./src/styles",
-            interfaces: "./interfaces",
-            utils: "./utils"
+            "types": "./types",
+            "hooks": "./src/hooks",
+            "styles": "./src/styles"
           }
         }
       ],

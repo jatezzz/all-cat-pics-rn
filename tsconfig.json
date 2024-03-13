@@ -5,6 +5,15 @@
     "paths": {
       "@/*": [
         "./*"
+      ],
+      "hooks/*": [
+        "./src/hooks/*"
+      ],
+      "types/*": [
+        "./src/types/*"
+      ],
+      "styles/*": [
+        "./src/styles/*"
       ]
     }
   },

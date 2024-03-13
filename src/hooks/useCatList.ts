@@ -1,6 +1,6 @@
-import { useCats } from "../cats/context/useCats";
 import { useEffect, useState } from "react";
-import { Cat } from "../types/Cat";
+import { Cat } from "types/Cat";
+import { useCats } from "@/src/cats/context/useCats";
 
 export const useCatList = () => {
   const { repository } = useCats();

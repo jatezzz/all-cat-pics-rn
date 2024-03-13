@@ -2,12 +2,12 @@ import React from "react";
 import { ListScreenProps as Props } from "./List.screen.types";
 import { ActivityIndicator, Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Link } from "expo-router";
+import { Cat } from "types/Cat";
+import { useCatList } from "hooks/useCatList";
 import Error from "../../components/global/Error/Error";
 import CatCard from "../../components/CatCard/CatCard";
-import { Cat } from "../../types/Cat";
 import ScreenTemplate from "../../screens/ScreenTemplate/ScreenTemplate.screen";
-import { useCatList } from "../../hooks/useCatList";
-import { t } from "./../../localization/localization";
+import { t } from "@/src/localization/localization";
 
 const numColumns = 2;
 const horizontalSpacing = 10;
